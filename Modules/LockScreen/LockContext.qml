@@ -39,7 +39,7 @@ Scope {
 
   PamContext {
     id: pam
-    config: "login"
+    config: "swaylock"
     user: Quickshell.env("USER")
 
     onPamMessage: {
