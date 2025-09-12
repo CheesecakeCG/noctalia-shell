@@ -919,11 +919,36 @@ Loader {
                           }
                         }
 
-                        Component.onCompleted: forceActiveFocus()
+                      Component.onCompleted: {
+                        forceActiveFocus()
+                        lockContext.tryUnlock()
                       }
+                    }
 
-                      Row {
-                        spacing: 0
+                    NText {
+                      id: asterisksText
+                      text: "*".repeat(passwordInput.text.length)
+                      color: Color.mOnSurface
+                      font.family: Settings.data.ui.fontFixed
+                      font.pointSize: Style.fontSizeL * scaling
+                      visible: passwordInput.activeFocus && !lockContext.unlockInProgress
+
+                      SequentialAnimation {
+                        id: typingEffect
+                        NumberAnimation {
+                          target: passwordInput
+                          property: "scale"
+                          to: 1.01
+                          duration: 50
+                        }
+                        NumberAnimation {
+                          target: passwordInput
+                          property: "scale"
+                          to: 1.0
+                          duration: 50
+                        }
+                      }
+                    }
 
                         Rectangle {
                           width: 2
