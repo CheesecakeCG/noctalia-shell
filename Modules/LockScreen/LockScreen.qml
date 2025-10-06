@@ -84,7 +84,14 @@ Loader {
             source: screen ? WallpaperService.getWallpaper(screen.name) : ""
             cache: true
             smooth: true
-            mipmap: false
+            mipmap: true
+          }
+          MultiEffect {
+            anchors.fill: parent
+            source: lockBgImage
+            blurEnabled: true
+            blur: 0.48
+            blurMax: 128
           }
 
           Rectangle {
